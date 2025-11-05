@@ -1,0 +1,727 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile - Engineering College Management System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-header {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+    
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #fff;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    
+    .profile-stats {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        transition: transform 0.3s ease;
+    }
+    
+    .profile-stats:hover {
+        transform: translateY(-5px);
+    }
+    
+    .stat-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    .stat-label {
+        font-size: 0.875rem;
+        color: #6c757d;
+    }
+    
+    .profile-section {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+    
+    .profile-section-title {
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 0.75rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .profile-info-item {
+        margin-bottom: 1rem;
+    }
+    
+    .profile-info-label {
+        font-weight: 600;
+        color: #495057;
+    }
+    
+    .profile-info-value {
+        color: #212529;
+    }
+    
+    .profile-action-btn {
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+    }
+    
+    .profile-tab-content {
+        padding-top: 1.5rem;
+    }
+    
+    .activity-item {
+        padding: 1rem;
+        border-left: 3px solid #007bff;
+        background-color: #f8f9fa;
+        margin-bottom: 1rem;
+        border-radius: 0 5px 5px 0;
+    }
+    
+    .activity-time {
+        font-size: 0.75rem;
+        color: #6c757d;
+    }
+    
+    .activity-title {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    
+    .activity-description {
+        font-size: 0.875rem;
+    }
+    
+    .document-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        margin-bottom: 0.75rem;
+        transition: background-color 0.3s ease;
+    }
+    
+    .document-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .document-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        color: #6c757d;
+    }
+    
+    .document-info {
+        flex-grow: 1;
+    }
+    
+    .document-title {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    
+    .document-meta {
+        font-size: 0.75rem;
+        color: #6c757d;
+    }
+    
+    .document-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .notification-item {
+        padding: 0.75rem;
+        border-bottom: 1px solid #dee2e6;
+        transition: background-color 0.3s ease;
+    }
+    
+    .notification-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+    
+    .notification-title {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    
+    .notification-time {
+        font-size: 0.75rem;
+        color: #6c757d;
+    }
+    
+    .notification-unread {
+        position: relative;
+    }
+    
+    .notification-unread::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -0.5rem;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #007bff;
+    }
+    
+    .profile-completion-progress {
+        height: 8px;
+        border-radius: 4px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="profile-container" class="container py-4">
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="row align-items-center">
+            <div class="col-md-2 text-center">
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff&size=150" alt="Profile Avatar" class="profile-avatar">
+            </div>
+            <div class="col-md-7">
+                <h2 class="mb-1">Admin User</h2>
+                <p class="text-muted mb-2">Administrator</p>
+                <p class="mb-3"><i class="fas fa-envelope me-2"></i>admin@example.com</p>
+                <div class="d-flex align-items-center mb-3">
+                    <div class="me-4">
+                        <span class="d-block fw-bold">Profile Completion</span>
+                        <div class="progress profile-completion-progress mt-1" style="width: 200px;">
+                            <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <small class="text-muted">85% Complete</small>
+                    </div>
+                    <div>
+                        <span class="d-block fw-bold">Account Status</span>
+                        <span class="badge bg-success">Active</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-md-end">
+                <button class="btn btn-outline-primary profile-action-btn mb-2">
+                    <i class="fas fa-edit me-2"></i> Edit Profile
+                </button>
+                <button class="btn btn-outline-secondary profile-action-btn">
+                    <i class="fas fa-cog me-2"></i> Settings
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profile Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="profile-stats text-center">
+                <div class="stat-icon text-primary">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-value">1,250</div>
+                <div class="stat-label">Students Managed</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="profile-stats text-center">
+                <div class="stat-icon text-success">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="stat-value">85</div>
+                <div class="stat-label">Reports Generated</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="profile-stats text-center">
+                <div class="stat-icon text-info">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-value">42</div>
+                <div class="stat-label">Events Organized</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="profile-stats text-center">
+                <div class="stat-icon text-warning">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-value">4.8</div>
+                <div class="stat-label">Rating</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profile Content -->
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-4">
+            <!-- Personal Information -->
+            <div class="profile-section">
+                <h5 class="profile-section-title">
+                    <i class="fas fa-user me-2"></i> Personal Information
+                </h5>
+                <div class="profile-info-item">
+                    <div class="profile-info-label">Full Name</div>
+                    <div class="profile-info-value">Admin User</div>
+                </div>
+                <div class="profile-info-item">
+                    <div class="profile-info-label">Email</div>
+                    <div class="profile-info-value">admin@example.com</div>
+                </div>
+                <div class="profile-info-item">
+                    <div class="profile-info-label">Phone</div>
+                    <div class="profile-info-value">+91 98765 43210</div>
+                </div>
+                <div class="profile-info-item">
+                    <div class="profile-info-label">Date of Birth</div>
+                    <div class="profile-info-value">January 15, 1985</div>
+                </div>
+                <div class="profile-info-item">
+                    <div class="profile-info-label">Address</div>
+                    <div class="profile-info-value">123 College Road, Bangalore, Karnataka, India</div>
+                </div>
+                <div class="profile-info-item">
+                    <div class="profile-info-label">Joined</div>
+                    <div class="profile-info-value">June 10, 2020</div>
+                </div>
+            </div>
+            
+            <!-- Skills -->
+            <div class="profile-section">
+                <h5 class="profile-section-title">
+                    <i class="fas fa-tools me-2"></i> Skills
+                </h5>
+                <div class="mb-3">
+                    <span class="badge bg-primary me-1 mb-1">Administration</span>
+                    <span class="badge bg-primary me-1 mb-1">Student Management</span>
+                    <span class="badge bg-primary me-1 mb-1">Academic Planning</span>
+                    <span class="badge bg-primary me-1 mb-1">Report Generation</span>
+                    <span class="badge bg-primary me-1 mb-1">Data Analysis</span>
+                    <span class="badge bg-primary me-1 mb-1">Event Management</span>
+                    <span class="badge bg-primary me-1 mb-1">Leadership</span>
+                    <span class="badge bg-primary me-1 mb-1">Communication</span>
+                </div>
+            </div>
+            
+            <!-- Documents -->
+            <div class="profile-section">
+                <h5 class="profile-section-title">
+                    <i class="fas fa-file me-2"></i> Documents
+                </h5>
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="far fa-file-pdf"></i>
+                    </div>
+                    <div class="document-info">
+                        <div class="document-title">ID Proof</div>
+                        <div class="document-meta">PDF • 2.3 MB • Uploaded on Oct 15, 2023</div>
+                    </div>
+                    <div class="document-actions">
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="far fa-file-image"></i>
+                    </div>
+                    <div class="document-info">
+                        <div class="document-title">Profile Photo</div>
+                        <div class="document-meta">JPG • 1.5 MB • Uploaded on Oct 15, 2023</div>
+                    </div>
+                    <div class="document-actions">
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="far fa-file-pdf"></i>
+                    </div>
+                    <div class="document-info">
+                        <div class="document-title">Resume</div>
+                        <div class="document-meta">PDF • 1.8 MB • Uploaded on Oct 15, 2023</div>
+                    </div>
+                    <div class="document-actions">
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-upload me-1"></i> Upload New Document
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="col-md-8">
+            <!-- Tabs -->
+            <div class="profile-section">
+                <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="activity-tab" data-bs-toggle="tab" data-bs-target="#activity" type="button" role="tab" aria-controls="activity" aria-selected="true">
+                            <i class="fas fa-history me-1"></i> Activity
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications" type="button" role="tab" aria-controls="notifications" aria-selected="false">
+                            <i class="fas fa-bell me-1"></i> Notifications
+                            <span class="badge bg-danger ms-1">3</span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="preferences-tab" data-bs-toggle="tab" data-bs-target="#preferences" type="button" role="tab" aria-controls="preferences" aria-selected="false">
+                            <i class="fas fa-sliders-h me-1"></i> Preferences
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">
+                            <i class="fas fa-shield-alt me-1"></i> Security
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content profile-tab-content" id="profileTabsContent">
+                    <!-- Activity Tab -->
+                    <div class="tab-pane fade show active" id="activity" role="tabpanel" aria-labelledby="activity-tab">
+                        <div class="activity-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="activity-title">Generated Academic Performance Report</div>
+                                <div class="activity-time">Today, 10:30 AM</div>
+                            </div>
+                            <div class="activity-description">
+                                Generated mid-semester academic performance report for all departments.
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="activity-title">Updated Student Records</div>
+                                <div class="activity-time">Yesterday, 3:45 PM</div>
+                            </div>
+                            <div class="activity-description">
+                                Updated records for 15 students in the Computer Science department.
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="activity-title">Created New Timetable</div>
+                                <div class="activity-time">Nov 3, 2025, 11:20 AM</div>
+                            </div>
+                            <div class="activity-description">
+                                Created a new timetable for the upcoming semester for ECE department.
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="activity-title">Approved Leave Requests</div>
+                                <div class="activity-time">Nov 2, 2025, 2:15 PM</div>
+                            </div>
+                            <div class="activity-description">
+                                Approved leave requests for 5 faculty members.
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="activity-title">Generated Fee Collection Report</div>
+                                <div class="activity-time">Nov 1, 2025, 9:30 AM</div>
+                            </div>
+                            <div class="activity-description">
+                                Generated quarterly fee collection report with payment status breakdown.
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-sync-alt me-1"></i> Load More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications Tab -->
+                    <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+                        <div class="notification-item notification-unread">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="notification-title">New Student Registration</div>
+                                <div class="notification-time">30 minutes ago</div>
+                            </div>
+                            <div>5 new students have registered for the upcoming semester.</div>
+                        </div>
+                        <div class="notification-item notification-unread">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="notification-title">System Update</div>
+                                <div class="notification-time">2 hours ago</div>
+                            </div>
+                            <div>The system will undergo maintenance tonight from 2 AM to 4 AM.</div>
+                        </div>
+                        <div class="notification-item notification-unread">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="notification-title">Fee Payment Reminder</div>
+                                <div class="notification-time">Yesterday</div>
+                            </div>
+                            <div>Reminder: 25 students have pending fee payments for this semester.</div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="notification-title">Faculty Meeting</div>
+                                <div class="notification-time">2 days ago</div>
+                            </div>
+                            <div>Faculty meeting scheduled for November 10, 2025 at 10:00 AM in Conference Room A.</div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="notification-title">Exam Schedule Published</div>
+                                <div class="notification-time">3 days ago</div>
+                            </div>
+                            <div>End-semester examination schedule has been published for all departments.</div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-sync-alt me-1"></i> Load More
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-check-double me-1"></i> Mark All as Read
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Preferences Tab -->
+                    <div class="tab-pane fade" id="preferences" role="tabpanel" aria-labelledby="preferences-tab">
+                        <form>
+                            <div class="mb-4">
+                                <h6 class="mb-3">Notification Preferences</h6>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                                    <label class="form-check-label" for="emailNotifications">Email Notifications</label>
+                                </div>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="smsNotifications">
+                                    <label class="form-check-label" for="smsNotifications">SMS Notifications</label>
+                                </div>
+                                <div class="form-check form-switch mb-2">
+                                    <input class="form-check-input" type="checkbox" id="browserNotifications" checked>
+                                    <label class="form-check-label" for="browserNotifications">Browser Notifications</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6 class="mb-3">Email Frequency</h6>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="emailFrequency" id="emailImmediate" checked>
+                                    <label class="form-check-label" for="emailImmediate">
+                                        Immediate
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="emailFrequency" id="emailDaily">
+                                    <label class="form-check-label" for="emailDaily">
+                                        Daily Digest
+                                    </label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="emailFrequency" id="emailWeekly">
+                                    <label class="form-check-label" for="emailWeekly">
+                                        Weekly Digest
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6 class="mb-3">Language and Region</h6>
+                                <div class="mb-3">
+                                    <label for="language" class="form-label">Language</label>
+                                    <select class="form-select" id="language">
+                                        <option value="en" selected>English</option>
+                                        <option value="hi">Hindi</option>
+                                        <option value="kn">Kannada</option>
+                                        <option value="ta">Tamil</option>
+                                        <option value="te">Telugu</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="timezone" class="form-label">Timezone</label>
+                                    <select class="form-select" id="timezone">
+                                        <option value="IST" selected>Indian Standard Time (IST)</option>
+                                        <option value="UTC">Coordinated Universal Time (UTC)</option>
+                                        <option value="EST">Eastern Standard Time (EST)</option>
+                                        <option value="PST">Pacific Standard Time (PST)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6 class="mb-3">Appearance</h6>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="theme" id="themeLight" checked>
+                                    <label class="form-check-label" for="themeLight">Light</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="theme" id="themeDark">
+                                    <label class="form-check-label" for="themeDark">Dark</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="theme" id="themeSystem">
+                                    <label class="form-check-label" for="themeSystem">System Default</label>
+                                </div>
+                            </div>
+                            
+                            <div class="text-end">
+                                <button type="button" class="btn btn-outline-secondary me-2">Cancel</button>
+                                <button type="button" class="btn btn-primary">Save Preferences</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Security Tab -->
+                    <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                        <div class="mb-4">
+                            <h6 class="mb-3">Change Password</h6>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="currentPassword" class="form-label">Current Password</label>
+                                    <input type="password" class="form-control" id="currentPassword">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">New Password</label>
+                                    <input type="password" class="form-control" id="newPassword">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword">
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-primary">Update Password</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h6 class="mb-3">Two-Factor Authentication</h6>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <div class="fw-bold">Two-Factor Authentication</div>
+                                    <div class="text-muted small">Add an extra layer of security to your account</div>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="twoFactorAuth">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-plus me-1"></i> Set Up Two-Factor Authentication
+                            </button>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h6 class="mb-3">Login Sessions</h6>
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Current Session</div>
+                                            <div class="text-muted small">
+                                                <i class="fas fa-desktop me-1"></i> Windows 10 • Chrome • Bangalore, India
+                                            </div>
+                                            <div class="text-muted small">
+                                                <i class="fas fa-clock me-1"></i> Active now
+                                            </div>
+                                        </div>
+                                        <span class="badge bg-success">Current</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Previous Session</div>
+                                            <div class="text-muted small">
+                                                <i class="fas fa-mobile-alt me-1"></i> Android • Chrome Mobile • Bangalore, India
+                                            </div>
+                                            <div class="text-muted small">
+                                                <i class="fas fa-clock me-1"></i> Yesterday, 5:30 PM
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-sign-out-alt me-1"></i> Logout
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end mt-3">
+                                <button type="button" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-sign-out-alt me-1"></i> Logout from All Devices
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h6 class="mb-3">Account Activity</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Activity</th>
+                                            <th>IP Address</th>
+                                            <th>Location</th>
+                                            <th>Date & Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Login</td>
+                                            <td>192.168.1.1</td>
+                                            <td>Bangalore, India</td>
+                                            <td>Today, 9:30 AM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password Change</td>
+                                            <td>192.168.1.1</td>
+                                            <td>Bangalore, India</td>
+                                            <td>Oct 25, 2025, 2:15 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Login</td>
+                                            <td>192.168.1.2</td>
+                                            <td>Chennai, India</td>
+                                            <td>Oct 20, 2025, 10:45 AM</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- Hidden input to store user ID -->
+<input type="hidden" id="currentUserId" value="{{ user_id }}">
+
+{% block extra_js %}
+<script src="{{ url_for('static', path='/js/profile.js') }}"></script>
+{% endblock %}

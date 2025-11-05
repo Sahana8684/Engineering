@@ -1,0 +1,641 @@
+{% extends "base.html" %}
+
+{% block title %}Account Settings - Engineering College Management System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .settings-container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .nav-pills .nav-link {
+        color: #495057;
+        border-radius: 0;
+        padding: 1rem 1.5rem;
+        font-weight: 500;
+    }
+    
+    .nav-pills .nav-link.active {
+        color: #6a11cb;
+        background-color: #fff;
+        border-left: 3px solid #6a11cb;
+    }
+    
+    .settings-sidebar {
+        border-right: 1px solid #dee2e6;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        border-color: #6a11cb;
+        box-shadow: 0 0 0 0.25rem rgba(106, 17, 203, 0.25);
+    }
+    
+    .btn-primary {
+        background-color: #6a11cb;
+        border-color: #6a11cb;
+    }
+    
+    .btn-primary:hover {
+        background-color: #5a0cb2;
+        border-color: #5a0cb2;
+    }
+    
+    .btn-outline-primary {
+        color: #6a11cb;
+        border-color: #6a11cb;
+    }
+    
+    .btn-outline-primary:hover {
+        background-color: #6a11cb;
+        border-color: #6a11cb;
+    }
+    
+    .avatar-wrapper {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 1rem;
+    }
+    
+    .avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .avatar-edit {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 34px;
+        height: 34px;
+        background-color: #6a11cb;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .avatar-edit:hover {
+        background-color: #5a0cb2;
+    }
+    
+    .avatar-edit input {
+        display: none;
+    }
+    
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .screenshot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .screenshot-item {
+        position: relative;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .screenshot-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+    
+    .screenshot-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .screenshot-item:hover .screenshot-overlay {
+        opacity: 1;
+    }
+    
+    .screenshot-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .screenshot-actions .btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: #212529;
+        padding: 0;
+    }
+    
+    .screenshot-actions .btn:hover {
+        background-color: #6a11cb;
+        color: white;
+    }
+    
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+    
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 24px;
+    }
+    
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+    
+    input:checked + .toggle-slider {
+        background-color: #6a11cb;
+    }
+    
+    input:checked + .toggle-slider:before {
+        transform: translateX(26px);
+    }
+    
+    .notification-item {
+        padding: 1rem;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+    
+    .notification-title {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+    
+    .notification-description {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container settings-container py-4">
+    <div class="row">
+        <div class="col-md-3 mb-4 mb-md-0">
+            <div class="card">
+                <div class="card-body text-center py-4">
+                    <div class="avatar-wrapper">
+                        <img src="https://via.placeholder.com/120" alt="Profile Image" class="avatar">
+                        <label class="avatar-edit" for="avatar-upload">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" id="avatar-upload" accept="image/*">
+                        </label>
+                    </div>
+                    <h5 class="mb-1">Professor Smith</h5>
+                    <p class="text-muted mb-3">Computer Science Department</p>
+                    <div class="d-grid">
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-user me-1"></i> View Profile
+                        </button>
+                    </div>
+                </div>
+                <div class="settings-sidebar">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="account-tab" data-bs-toggle="pill" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">
+                            <i class="fas fa-user-circle me-2"></i> Account
+                        </button>
+                        <button class="nav-link" id="security-tab" data-bs-toggle="pill" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">
+                            <i class="fas fa-shield-alt me-2"></i> Security
+                        </button>
+                        <button class="nav-link" id="notifications-tab" data-bs-toggle="pill" data-bs-target="#notifications" type="button" role="tab" aria-controls="notifications" aria-selected="false">
+                            <i class="fas fa-bell me-2"></i> Notifications
+                        </button>
+                        <button class="nav-link" id="screenshots-tab" data-bs-toggle="pill" data-bs-target="#screenshots" type="button" role="tab" aria-controls="screenshots" aria-selected="false">
+                            <i class="fas fa-image me-2"></i> Screenshots
+                        </button>
+                        <button class="nav-link" id="appearance-tab" data-bs-toggle="pill" data-bs-target="#appearance" type="button" role="tab" aria-controls="appearance" aria-selected="false">
+                            <i class="fas fa-paint-brush me-2"></i> Appearance
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                <!-- Account Settings -->
+                <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Account Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 mb-3 mb-md-0">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" value="John">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" value="Smith">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" value="smith@example.edu">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" value="+91 9876543210">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="designation" class="form-label">Designation</label>
+                                    <input type="text" class="form-control" id="designation" value="Associate Professor">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="department" class="form-label">Department</label>
+                                    <select class="form-select" id="department">
+                                        <option>Computer Science Engineering</option>
+                                        <option>Electronics & Communication Engineering</option>
+                                        <option>Electrical Engineering</option>
+                                        <option>Mechanical Engineering</option>
+                                        <option>Civil Engineering</option>
+                                        <option>Information Technology</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bio" class="form-label">Bio</label>
+                                    <textarea class="form-control" id="bio" rows="3">Associate Professor with 7+ years of experience teaching computer science subjects. Research interests include data structures, algorithms, and machine learning.</textarea>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-outline-secondary me-md-2">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Settings -->
+                <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Change Password</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="currentPassword" class="form-label">Current Password</label>
+                                    <input type="password" class="form-control" id="currentPassword">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">New Password</label>
+                                    <input type="password" class="form-control" id="newPassword">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword">
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="submit" class="btn btn-primary">Update Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Two-Factor Authentication</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <h6 class="mb-1">Enable Two-Factor Authentication</h6>
+                                    <p class="text-muted mb-0">Add an extra layer of security to your account</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="alert alert-info">
+                                <div class="d-flex">
+                                    <div class="me-3">
+                                        <i class="fas fa-info-circle fa-lg"></i>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">Two-factor authentication adds an extra layer of security to your account by requiring more than just a password to sign in.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notification Settings -->
+                <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Notification Preferences</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="notification-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="notification-title">Email Notifications</h6>
+                                    <p class="notification-description">Receive email notifications for important updates</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="notification-title">Student Submissions</h6>
+                                    <p class="notification-description">Get notified when students submit assignments</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="notification-title">Exam Schedule Updates</h6>
+                                    <p class="notification-description">Receive notifications about exam schedule changes</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="notification-title">Department Announcements</h6>
+                                    <p class="notification-description">Get notified about department-wide announcements</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="notification-title">System Updates</h6>
+                                    <p class="notification-description">Receive notifications about system maintenance and updates</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                                <button type="button" class="btn btn-primary">Save Preferences</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Screenshots Settings -->
+                <div class="tab-pane fade" id="screenshots" role="tabpanel" aria-labelledby="screenshots-tab">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Manage Screenshots</h5>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus me-1"></i> Upload New
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="screenshot-grid">
+                                <!-- Screenshot 1 -->
+                                <div class="screenshot-item">
+                                    <img src="https://via.placeholder.com/200x150?text=Lecture+Slide" class="screenshot-img" alt="Lecture Slide">
+                                    <div class="screenshot-overlay">
+                                        <div class="screenshot-actions">
+                                            <button class="btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Screenshot 2 -->
+                                <div class="screenshot-item">
+                                    <img src="https://via.placeholder.com/200x150?text=Database+Diagram" class="screenshot-img" alt="Database Diagram">
+                                    <div class="screenshot-overlay">
+                                        <div class="screenshot-actions">
+                                            <button class="btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Screenshot 3 -->
+                                <div class="screenshot-item">
+                                    <img src="https://via.placeholder.com/200x150?text=Code+Example" class="screenshot-img" alt="Code Example">
+                                    <div class="screenshot-overlay">
+                                        <div class="screenshot-actions">
+                                            <button class="btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Screenshot 4 -->
+                                <div class="screenshot-item">
+                                    <img src="https://via.placeholder.com/200x150?text=Network+Topology" class="screenshot-img" alt="Network Topology">
+                                    <div class="screenshot-overlay">
+                                        <div class="screenshot-actions">
+                                            <button class="btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Screenshot 5 -->
+                                <div class="screenshot-item">
+                                    <img src="https://via.placeholder.com/200x150?text=Algorithm+Flowchart" class="screenshot-img" alt="Algorithm Flowchart">
+                                    <div class="screenshot-overlay">
+                                        <div class="screenshot-actions">
+                                            <button class="btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Screenshot 6 -->
+                                <div class="screenshot-item">
+                                    <img src="https://via.placeholder.com/200x150?text=Class+Diagram" class="screenshot-img" alt="Class Diagram">
+                                    <div class="screenshot-overlay">
+                                        <div class="screenshot-actions">
+                                            <button class="btn"><i class="fas fa-eye"></i></button>
+                                            <button class="btn"><i class="fas fa-edit"></i></button>
+                                            <button class="btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div>
+                                    <p class="mb-0 text-muted">Showing 6 of 24 screenshots</p>
+                                </div>
+                                <nav aria-label="Screenshot pagination">
+                                    <ul class="pagination pagination-sm mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Appearance Settings -->
+                <div class="tab-pane fade" id="appearance" role="tabpanel" aria-labelledby="appearance-tab">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Appearance Settings</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h6>Theme</h6>
+                                <div class="d-flex gap-3 mt-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="theme" id="lightTheme" checked>
+                                        <label class="form-check-label" for="lightTheme">
+                                            Light
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="theme" id="darkTheme">
+                                        <label class="form-check-label" for="darkTheme">
+                                            Dark
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="theme" id="systemTheme">
+                                        <label class="form-check-label" for="systemTheme">
+                                            System Default
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6>Color Scheme</h6>
+                                <div class="d-flex gap-3 mt-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="colorScheme" id="purpleScheme" checked>
+                                        <label class="form-check-label" for="purpleScheme">
+                                            Purple (Default)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="colorScheme" id="blueScheme">
+                                        <label class="form-check-label" for="blueScheme">
+                                            Blue
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="colorScheme" id="greenScheme">
+                                        <label class="form-check-label" for="greenScheme">
+                                            Green
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6>Font Size</h6>
+                                <div class="d-flex gap-3 mt-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="fontSize" id="smallFont">
+                                        <label class="form-check-label" for="smallFont">
+                                            Small
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="fontSize" id="mediumFont" checked>
+                                        <label class="form-check-label" for="mediumFont">
+                                            Medium
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="fontSize" id="largeFont">
+                                        <label class="form-check-label" for="largeFont">
+                                            Large
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-outline-secondary me-md-2">Reset to Default</button>
+                                <button type="button" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

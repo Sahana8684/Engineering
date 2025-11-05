@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}Student Details - Engineering College Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Student Details</h1>
+            <p class="lead">View engineering student information</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="/students" class="btn btn-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i> Back to Students
+            </a>
+            <a href="/students/{{ student.id }}/edit" class="btn btn-primary me-2">
+                <i class="fas fa-edit me-1"></i> Edit
+            </a>
+            <a href="/students/{{ student.id }}/delete" class="btn btn-danger">
+                <i class="fas fa-trash me-1"></i> Delete
+            </a>
+        </div>
+    </div>
+
+    {% if request.query_params.get('success') %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ request.query_params.get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Personal Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="avatar-placeholder bg-light rounded-circle mx-auto mb-3" style="width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #6c757d;">
+                            {{ student.first_name[0] }}{{ student.last_name[0] }}
+                        </div>
+                        <h4>{{ student.first_name }} {{ student.last_name }}</h4>
+                        <p class="text-muted">{{ student.student_id }}</p>
+                    </div>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">Gender</span>
+                            <span>{{ student.gender }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">Date of Birth</span>
+                            <span>{{ student.date_of_birth.strftime('%d %b, %Y') }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">Email</span>
+                            <span>{{ student.email or 'Not provided' }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">Phone</span>
+                            <span>{{ student.phone_number or 'Not provided' }}</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="fw-bold">Address</span>
+                            <p class="mb-0 mt-1">{{ student.address or 'Not provided' }}</p>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">Status</span>
+                            {% if student.is_active %}
+                            <span class="badge bg-success">Active</span>
+                            {% else %}
+                            <span class="badge bg-danger">Inactive</span>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Academic Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">Branch</span>
+                                    <span>{{ student.branch.value }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">Academic Year</span>
+                                    <span>{{ student.academic_year.value }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">Enrollment Date</span>
+                                    <span>{{ student.enrollment_date.strftime('%d %b, %Y') }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">CGPA</span>
+                                    <span>{{ student.cgpa or 'Not available' }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">Backlogs</span>
+                                    <span>{{ student.backlogs }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="fw-bold">Scholarship</span>
+                                    {% if student.scholarship_status %}
+                                    <span class="badge bg-success">Yes</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">No</span>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% if student.scholarship_status and student.scholarship_details %}
+                    <div class="mt-3">
+                        <h6 class="fw-bold">Scholarship Details</h6>
+                        <p>{{ student.scholarship_details }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Project Information</h5>
+                </div>
+                <div class="card-body">
+                    {% if student.project_title %}
+                    <h6 class="fw-bold">{{ student.project_title }}</h6>
+                    {% if student.project_guide %}
+                    <p class="mb-0">Guide: {{ student.project_guide }}</p>
+                    {% endif %}
+                    {% else %}
+                    <p class="mb-0">No project information available</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Internship & Placement</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Internship</h6>
+                            {% if student.internship_company %}
+                            <p>Company: {{ student.internship_company }}</p>
+                            <p>Status: {{ student.internship_status or 'Not specified' }}</p>
+                            {% else %}
+                            <p>No internship information available</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Placement</h6>
+                            {% if student.placement_status == 'Placed' %}
+                            <p>Status: <span class="badge bg-success">Placed</span></p>
+                            {% if student.placement_company %}
+                            <p>Company: {{ student.placement_company }}</p>
+                            {% endif %}
+                            {% else %}
+                            <p>Status: <span class="badge bg-secondary">Not Placed</span></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Accommodation</h5>
+                </div>
+                <div class="card-body">
+                    {% if student.hostel_resident %}
+                    <p>Hostel Resident: <span class="badge bg-success">Yes</span></p>
+                    {% if student.hostel_room_number %}
+                    <p class="mb-0">Room Number: {{ student.hostel_room_number }}</p>
+                    {% endif %}
+                    {% else %}
+                    <p class="mb-0">Hostel Resident: <span class="badge bg-secondary">No</span></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

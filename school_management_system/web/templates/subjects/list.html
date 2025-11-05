@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}CSE Subjects - Engineering College Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Computer Science Engineering Subjects</h1>
+            <p class="lead">Core subjects for CSE department</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="/dashboard" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Data Structures and Algorithms -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Data Structures and Algorithms</h5>
+                        <span class="badge bg-light text-dark">CS201</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <span class="badge bg-info">4 Credits</span>
+                        <span class="badge bg-success">Core Subject</span>
+                    </div>
+                    <p class="card-text">This course covers fundamental data structures such as arrays, linked lists, stacks, queues, trees, and graphs, along with algorithms for searching, sorting, and graph traversal. Students will learn algorithm analysis techniques and problem-solving strategies.</p>
+                    <h6 class="fw-bold">Learning Outcomes:</h6>
+                    <ul>
+                        <li>Implement and analyze common data structures</li>
+                        <li>Apply appropriate data structures to solve computing problems</li>
+                        <li>Analyze algorithm efficiency using Big O notation</li>
+                        <li>Design efficient algorithms for various computational tasks</li>
+                    </ul>
+                    <h6 class="fw-bold">Faculty:</h6>
+                    <p>Dr. Sharma <span class="text-muted">(Professor, CSE Department)</span></p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">Second Year - Third Semester</small>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Database Management Systems -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Database Management Systems</h5>
+                        <span class="badge bg-light text-dark">CS202</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <span class="badge bg-info">4 Credits</span>
+                        <span class="badge bg-success">Core Subject</span>
+                    </div>
+                    <p class="card-text">This course introduces the principles of database design and management. Topics include data modeling, relational algebra, SQL, normalization, transaction management, and database security. Students will design and implement database applications.</p>
+                    <h6 class="fw-bold">Learning Outcomes:</h6>
+                    <ul>
+                        <li>Design and implement relational database schemas</li>
+                        <li>Write complex SQL queries for data manipulation and retrieval</li>
+                        <li>Apply normalization techniques to optimize database design</li>
+                        <li>Implement transaction management and concurrency control</li>
+                    </ul>
+                    <h6 class="fw-bold">Faculty:</h6>
+                    <p>Prof. Verma <span class="text-muted">(Associate Professor, CSE Department)</span></p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">Second Year - Third Semester</small>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Object-Oriented Programming -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Object-Oriented Programming</h5>
+                        <span class="badge bg-light text-dark">CS203</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <span class="badge bg-info">3 Credits</span>
+                        <span class="badge bg-success">Core Subject</span>
+                    </div>
+                    <p class="card-text">This course covers object-oriented programming concepts using Java. Topics include classes, objects, inheritance, polymorphism, encapsulation, interfaces, exception handling, and GUI programming. Students will develop applications using OOP principles.</p>
+                    <h6 class="fw-bold">Learning Outcomes:</h6>
+                    <ul>
+                        <li>Apply object-oriented design principles to software development</li>
+                        <li>Implement class hierarchies using inheritance and interfaces</li>
+                        <li>Develop applications with graphical user interfaces</li>
+                        <li>Implement exception handling for robust applications</li>
+                    </ul>
+                    <h6 class="fw-bold">Faculty:</h6>
+                    <p>Dr. Gupta <span class="text-muted">(Assistant Professor, CSE Department)</span></p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">Second Year - Third Semester</small>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Computer Networks -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Computer Networks</h5>
+                        <span class="badge bg-light text-dark">CS204</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <span class="badge bg-info">4 Credits</span>
+                        <span class="badge bg-success">Core Subject</span>
+                    </div>
+                    <p class="card-text">This course introduces the principles of computer networking. Topics include network architectures, protocols, TCP/IP model, routing algorithms, network security, and socket programming. Students will design and implement network applications.</p>
+                    <h6 class="fw-bold">Learning Outcomes:</h6>
+                    <ul>
+                        <li>Understand the layered architecture of computer networks</li>
+                        <li>Analyze various networking protocols and their functions</li>
+                        <li>Implement socket programming for client-server applications</li>
+                        <li>Design and configure small to medium-sized networks</li>
+                    </ul>
+                    <h6 class="fw-bold">Faculty:</h6>
+                    <p>Dr. Patel <span class="text-muted">(Professor, CSE Department)</span></p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">Second Year - Third Semester</small>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Subject Statistics</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="fw-bold">Credit Distribution</h6>
+                    <div class="progress mb-3" style="height: 25px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">Data Structures (4)</div>
+                    </div>
+                    <div class="progress mb-3" style="height: 25px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">DBMS (4)</div>
+                    </div>
+                    <div class="progress mb-3" style="height: 25px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">OOP (3)</div>
+                    </div>
+                    <div class="progress mb-3" style="height: 25px;">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">Networks (4)</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="fw-bold">Subject Performance (Previous Batch)</h6>
+                    <canvas id="subjectPerformanceChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('subjectPerformanceChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['DS & Algo', 'DBMS', 'OOP', 'Networks'],
+                datasets: [{
+                    label: 'Average CGPA',
+                    data: [7.8, 8.2, 8.5, 7.6],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 6,
+                        max: 10
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

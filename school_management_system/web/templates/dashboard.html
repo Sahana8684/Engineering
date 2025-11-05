@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Engineering College Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Dashboard</h1>
+            <p class="lead">Welcome to the Engineering College Management System</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="/profile" class="btn btn-outline-primary me-2">
+                <i class="fas fa-user me-1"></i> My Profile
+            </a>
+            <a href="/logout" class="btn btn-outline-danger">
+                <i class="fas fa-sign-out-alt me-1"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Quick Stats -->
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Quick Stats</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <div class="card h-100 border-primary">
+                                <div class="card-body text-center">
+                                    <h1 class="display-4 text-primary">450</h1>
+                                    <p class="text-muted mb-0">Total Students</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <div class="card h-100 border-success">
+                                <div class="card-body text-center">
+                                    <h1 class="display-4 text-success">35</h1>
+                                    <p class="text-muted mb-0">Faculty Members</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3 mb-md-0">
+                            <div class="card h-100 border-info">
+                                <div class="card-body text-center">
+                                    <h1 class="display-4 text-info">85%</h1>
+                                    <p class="text-muted mb-0">Placement Rate</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card h-100 border-warning">
+                                <div class="card-body text-center">
+                                    <h1 class="display-4 text-warning">8.2</h1>
+                                    <p class="text-muted mb-0">Average CGPA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Modules -->
+        <div class="col-md-8 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Main Modules</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 module-card">
+                                <div class="card-body text-center">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-user-graduate fa-3x text-primary"></i>
+                                    </div>
+                                    <h5>Student Management</h5>
+                                    <p class="small text-muted">Manage student records, admissions, and academic progress</p>
+                                    <a href="/students" class="btn btn-sm btn-primary stretched-link">Access</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 module-card">
+                                <div class="card-body text-center">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-book fa-3x text-success"></i>
+                                    </div>
+                                    <h5>Subject Management</h5>
+                                    <p class="small text-muted">Manage course curriculum, subjects, and teaching materials</p>
+                                    <a href="/subjects/cse" class="btn btn-sm btn-success stretched-link">Access</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 module-card">
+                                <div class="card-body text-center">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-calendar-alt fa-3x text-info"></i>
+                                    </div>
+                                    <h5>Timetable Management</h5>
+                                    <p class="small text-muted">Create and manage class schedules and academic calendar</p>
+                                    <a href="/timetables/cse/second-year" class="btn btn-sm btn-info stretched-link">Access</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 module-card">
+                                <div class="card-body text-center">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-file-alt fa-3x text-warning"></i>
+                                    </div>
+                                    <h5>Examination</h5>
+                                    <p class="small text-muted">Manage exams, results, and performance analytics</p>
+                                    <a href="/exams/timetable/cse/second-year" class="btn btn-sm btn-warning stretched-link">Access</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 module-card">
+                                <div class="card-body text-center">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-money-bill-wave fa-3x text-danger"></i>
+                                    </div>
+                                    <h5>Fee Management</h5>
+                                    <p class="small text-muted">Manage fee collection, scholarships, and financial records</p>
+                                    <div class="d-grid gap-2">
+                                        <a href="/payments" class="btn btn-sm btn-danger">Payments</a>
+                                        <a href="/fee-structures" class="btn btn-sm btn-outline-danger">Fee Structures</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 module-card">
+                                <div class="card-body text-center">
+                                    <div class="icon-wrapper mb-3">
+                                        <i class="fas fa-chart-bar fa-3x text-secondary"></i>
+                                    </div>
+                                    <h5>Reports</h5>
+                                    <p class="small text-muted">Generate and view various reports and analytics</p>
+                                    <a href="#" class="btn btn-sm btn-secondary stretched-link">Access</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications & Quick Links -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Notifications & Quick Links</h5>
+                </div>
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">End Semester Exam Schedule Released</h6>
+                                <small class="text-muted">2 days ago</small>
+                            </div>
+                            <p class="mb-1 small">The end semester examination schedule for all departments has been released.</p>
+                            <a href="/exams/timetable/cse/second-year" class="small">View Details</a>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Placement Drive: TCS</h6>
+                                <small class="text-muted">1 week ago</small>
+                            </div>
+                            <p class="mb-1 small">TCS will be conducting a placement drive on November 15, 2023.</p>
+                            <a href="#" class="small">View Details</a>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Fee Payment Reminder</h6>
+                                <small class="text-muted">2 weeks ago</small>
+                            </div>
+                            <p class="mb-1 small">Last date for fee payment without late fee is November 30, 2023.</p>
+                            <a href="/payments" class="small">View Details</a>
+                        </li>
+                    </ul>
+                    <div class="p-3 bg-light">
+                        <h6 class="mb-3">Quick Links</h6>
+                        <div class="d-grid gap-2">
+                            <a href="/subjects/cse" class="btn btn-sm btn-outline-primary">CSE Subjects</a>
+                            <a href="/timetables/cse/second-year" class="btn btn-sm btn-outline-primary">Class Timetable</a>
+                            <a href="/exams/timetable/cse/second-year" class="btn btn-sm btn-outline-primary">Exam Schedule</a>
+                            <a href="/fee-structures" class="btn btn-sm btn-outline-primary">Fee Structures</a>
+                            <a href="/payments" class="btn btn-sm btn-outline-primary">Make Payment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Upcoming Events -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Upcoming Events</h5>
+                </div>
+                <div class="card-body">
+                    <div class="event-item d-flex mb-3">
+                        <div class="event-date me-3 text-center">
+                            <div class="month bg-danger text-white py-1">Nov</div>
+                            <div class="day py-2 fw-bold">15</div>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">TCS Placement Drive</h6>
+                            <p class="small text-muted mb-0">9:00 AM - Main Auditorium</p>
+                        </div>
+                    </div>
+                    <div class="event-item d-flex mb-3">
+                        <div class="event-date me-3 text-center">
+                            <div class="month bg-danger text-white py-1">Nov</div>
+                            <div class="day py-2 fw-bold">20</div>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Technical Symposium</h6>
+                            <p class="small text-muted mb-0">10:00 AM - CSE Department</p>
+                        </div>
+                    </div>
+                    <div class="event-item d-flex">
+                        <div class="event-date me-3 text-center">
+                            <div class="month bg-danger text-white py-1">Dec</div>
+                            <div class="day py-2 fw-bold">05</div>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">Annual Sports Day</h6>
+                            <p class="small text-muted mb-0">8:00 AM - College Ground</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-sm btn-outline-danger">View All Events</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Analytics -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Performance Analytics</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="performanceChart" width="400" height="200"></canvas>
+                </div>
+                <div class="card-footer">
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <h6 class="mb-0">92%</h6>
+                            <small class="text-muted">Attendance</small>
+                        </div>
+                        <div class="col-4">
+                            <h6 class="mb-0">85%</h6>
+                            <small class="text-muted">Assignments</small>
+                        </div>
+                        <div class="col-4">
+                            <h6 class="mb-0">78%</h6>
+                            <small class="text-muted">Mid-term</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .module-card {
+        transition: transform 0.3s;
+    }
+    
+    .module-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .icon-wrapper {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .event-date {
+        width: 50px;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    
+    .event-date .month {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+    }
+    
+    .event-date .day {
+        font-size: 1.2rem;
+    }
+</style>
+
+<!-- Hidden input to store user ID -->
+<input type="hidden" id="currentUserId" value="{{ user_id }}">
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Store user data in localStorage after successful login
+        // Get the user ID from the hidden input
+        const userId = document.getElementById('currentUserId').value;
+        storeUserData(parseInt(userId));
+        
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                datasets: [{
+                    label: 'CGPA',
+                    data: [7.8, 8.0, 8.2, 8.1, 8.3, 8.5, 8.4, 8.6, 8.7, 8.9],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 7,
+                        max: 10
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

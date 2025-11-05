@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+
+{% block title %}Class Timetable - Engineering College Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>CSE Second Year Timetable</h1>
+            <p class="lead">Section A - Third Semester (2023-2024)</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="/dashboard" class="btn btn-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+            </a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" onclick="window.print()">
+                    <i class="fas fa-print me-1"></i> Print
+                </button>
+                <button type="button" class="btn btn-success">
+                    <i class="fas fa-download me-1"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Weekly Schedule</h5>
+                <span class="badge bg-light text-dark">Room: CS-201</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered timetable-table">
+                    <thead class="table-light">
+                        <tr>
+                            <th width="10%">Time</th>
+                            <th width="18%">Monday</th>
+                            <th width="18%">Tuesday</th>
+                            <th width="18%">Wednesday</th>
+                            <th width="18%">Thursday</th>
+                            <th width="18%">Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 9:00 - 10:30 -->
+                        <tr>
+                            <td class="time-slot">
+                                <strong>9:00 - 10:30</strong>
+                            </td>
+                            <td class="subject-slot bg-primary-subtle">
+                                <div class="subject-name">Data Structures</div>
+                                <div class="faculty-name">Dr. Sharma</div>
+                            </td>
+                            <td class="subject-slot bg-success-subtle">
+                                <div class="subject-name">OOP</div>
+                                <div class="faculty-name">Dr. Gupta</div>
+                            </td>
+                            <td class="subject-slot bg-primary-subtle">
+                                <div class="subject-name">Data Structures</div>
+                                <div class="faculty-name">Dr. Sharma</div>
+                            </td>
+                            <td class="subject-slot bg-success-subtle">
+                                <div class="subject-name">OOP</div>
+                                <div class="faculty-name">Dr. Gupta</div>
+                            </td>
+                            <td class="subject-slot bg-danger-subtle">
+                                <div class="subject-name">Computer Networks</div>
+                                <div class="faculty-name">Dr. Patel</div>
+                            </td>
+                        </tr>
+                        
+                        <!-- 10:30 - 10:45 -->
+                        <tr>
+                            <td class="time-slot" colspan="6" style="text-align: center; background-color: #f8f9fa;">
+                                <strong>Break (10:30 - 10:45)</strong>
+                            </td>
+                        </tr>
+                        
+                        <!-- 10:45 - 12:15 -->
+                        <tr>
+                            <td class="time-slot">
+                                <strong>10:45 - 12:15</strong>
+                            </td>
+                            <td class="subject-slot bg-info-subtle">
+                                <div class="subject-name">DBMS</div>
+                                <div class="faculty-name">Prof. Verma</div>
+                            </td>
+                            <td class="subject-slot bg-danger-subtle">
+                                <div class="subject-name">Computer Networks</div>
+                                <div class="faculty-name">Dr. Patel</div>
+                            </td>
+                            <td class="subject-slot bg-info-subtle">
+                                <div class="subject-name">DBMS</div>
+                                <div class="faculty-name">Prof. Verma</div>
+                            </td>
+                            <td class="subject-slot bg-danger-subtle">
+                                <div class="subject-name">Computer Networks</div>
+                                <div class="faculty-name">Dr. Patel</div>
+                            </td>
+                            <td class="subject-slot bg-info-subtle">
+                                <div class="subject-name">DBMS</div>
+                                <div class="faculty-name">Prof. Verma</div>
+                            </td>
+                        </tr>
+                        
+                        <!-- 12:15 - 1:15 -->
+                        <tr>
+                            <td class="time-slot" colspan="6" style="text-align: center; background-color: #f8f9fa;">
+                                <strong>Lunch Break (12:15 - 1:15)</strong>
+                            </td>
+                        </tr>
+                        
+                        <!-- 1:15 - 2:45 -->
+                        <tr>
+                            <td class="time-slot">
+                                <strong>1:15 - 2:45</strong>
+                            </td>
+                            <td class="subject-slot bg-warning-subtle">
+                                <div class="subject-name">DS Lab</div>
+                                <div class="faculty-name">Dr. Sharma</div>
+                            </td>
+                            <td class="subject-slot bg-warning-subtle">
+                                <div class="subject-name">DS Lab</div>
+                                <div class="faculty-name">Dr. Sharma</div>
+                            </td>
+                            <td class="subject-slot bg-secondary-subtle">
+                                <div class="subject-name">Soft Skills</div>
+                                <div class="faculty-name">Prof. Mehta</div>
+                            </td>
+                            <td class="subject-slot bg-success-subtle">
+                                <div class="subject-name">OOP</div>
+                                <div class="faculty-name">Dr. Gupta</div>
+                            </td>
+                            <td class="subject-slot bg-primary-subtle">
+                                <div class="subject-name">Data Structures</div>
+                                <div class="faculty-name">Dr. Sharma</div>
+                            </td>
+                        </tr>
+                        
+                        <!-- 2:45 - 3:00 -->
+                        <tr>
+                            <td class="time-slot" colspan="6" style="text-align: center; background-color: #f8f9fa;">
+                                <strong>Break (2:45 - 3:00)</strong>
+                            </td>
+                        </tr>
+                        
+                        <!-- 3:00 - 4:30 -->
+                        <tr>
+                            <td class="time-slot">
+                                <strong>3:00 - 4:30</strong>
+                            </td>
+                            <td class="subject-slot bg-purple-subtle" style="background-color: #e6d9f2;">
+                                <div class="subject-name">DBMS Lab</div>
+                                <div class="faculty-name">Prof. Verma</div>
+                            </td>
+                            <td class="subject-slot bg-purple-subtle" style="background-color: #e6d9f2;">
+                                <div class="subject-name">DBMS Lab</div>
+                                <div class="faculty-name">Prof. Verma</div>
+                            </td>
+                            <td class="subject-slot bg-teal-subtle" style="background-color: #d1ede5;">
+                                <div class="subject-name">OOP Lab</div>
+                                <div class="faculty-name">Dr. Gupta</div>
+                            </td>
+                            <td class="subject-slot bg-teal-subtle" style="background-color: #d1ede5;">
+                                <div class="subject-name">OOP Lab</div>
+                                <div class="faculty-name">Dr. Gupta</div>
+                            </td>
+                            <td class="subject-slot bg-orange-subtle" style="background-color: #ffe5d0;">
+                                <div class="subject-name">Networks Lab</div>
+                                <div class="faculty-name">Dr. Patel</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Subject Color Codes</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-wrap">
+                        <div class="me-3 mb-2">
+                            <span class="color-box bg-primary-subtle"></span> Data Structures
+                        </div>
+                        <div class="me-3 mb-2">
+                            <span class="color-box bg-info-subtle"></span> DBMS
+                        </div>
+                        <div class="me-3 mb-2">
+                            <span class="color-box bg-success-subtle"></span> OOP
+                        </div>
+                        <div class="me-3 mb-2">
+                            <span class="color-box bg-danger-subtle"></span> Computer Networks
+                        </div>
+                        <div class="me-3 mb-2">
+                            <span class="color-box bg-warning-subtle"></span> DS Lab
+                        </div>
+                        <div class="me-3 mb-2">
+                            <span class="color-box" style="background-color: #e6d9f2;"></span> DBMS Lab
+                        </div>
+                        <div class="me-3 mb-2">
+                            <span class="color-box" style="background-color: #d1ede5;"></span> OOP Lab
+                        </div>
+                        <div class="me-3 mb-2">
+                            <span class="color-box" style="background-color: #ffe5d0;"></span> Networks Lab
+                        </div>
+                        <div class="me-3 mb-2">
+                            <span class="color-box bg-secondary-subtle"></span> Soft Skills
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Faculty Contact Information</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Dr. Sharma</strong>
+                                <div class="text-muted">Data Structures & Algorithms</div>
+                            </div>
+                            <a href="mailto:sharma@example.edu" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-envelope me-1"></i> Email
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Prof. Verma</strong>
+                                <div class="text-muted">Database Management Systems</div>
+                            </div>
+                            <a href="mailto:verma@example.edu" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-envelope me-1"></i> Email
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Dr. Gupta</strong>
+                                <div class="text-muted">Object-Oriented Programming</div>
+                            </div>
+                            <a href="mailto:gupta@example.edu" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-envelope me-1"></i> Email
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Dr. Patel</strong>
+                                <div class="text-muted">Computer Networks</div>
+                            </div>
+                            <a href="mailto:patel@example.edu" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-envelope me-1"></i> Email
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Important Notes</h5>
+        </div>
+        <div class="card-body">
+            <ul class="mb-0">
+                <li>All theory classes are held in Room CS-201.</li>
+                <li>DS Lab is conducted in Computer Lab 1 (Ground Floor).</li>
+                <li>DBMS Lab is conducted in Database Lab (First Floor).</li>
+                <li>OOP Lab is conducted in Programming Lab (First Floor).</li>
+                <li>Networks Lab is conducted in Networking Lab (Second Floor).</li>
+                <li>Attendance is mandatory for all classes and labs.</li>
+                <li>Students must carry their ID cards at all times.</li>
+                <li>For any changes in the timetable, notifications will be sent via the college portal.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .timetable-table {
+        border-collapse: collapse;
+    }
+    
+    .timetable-table th, .timetable-table td {
+        border: 1px solid #dee2e6;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    .time-slot {
+        background-color: #f8f9fa;
+        text-align: center;
+    }
+    
+    .subject-slot {
+        height: 80px;
+    }
+    
+    .subject-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    .faculty-name {
+        font-size: 0.85rem;
+    }
+    
+    .color-box {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        vertical-align: middle;
+        border: 1px solid #dee2e6;
+    }
+    
+    @media print {
+        .btn, .no-print {
+            display: none !important;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .card {
+            border: none;
+        }
+        
+        .card-header {
+            background-color: #f8f9fa !important;
+            color: #000 !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+    }
+</style>
+{% endblock %}

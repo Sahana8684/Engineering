@@ -1,0 +1,790 @@
+{% extends "base.html" %}
+
+{% block title %}Fee Structures - Engineering College Management System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .fee-structure-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .fee-structure-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .fee-component-badge {
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .fee-total {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    
+    .payment-schedule-item {
+        border-left: 3px solid #007bff;
+        padding-left: 1rem;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Fee Structures</h1>
+            <p class="lead">Manage fee structures for different courses and academic years</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFeeStructureModal">
+                <i class="fas fa-plus me-1"></i> Create New Fee Structure
+            </button>
+        </div>
+    </div>
+
+    <!-- Filter Options -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="academicYear" class="form-label">Academic Year</label>
+                    <select class="form-select" id="academicYear">
+                        <option value="2025-2026" selected>2025-2026</option>
+                        <option value="2024-2025">2024-2025</option>
+                        <option value="2023-2024">2023-2024</option>
+                        <option value="2022-2023">2022-2023</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="branch" class="form-label">Branch</label>
+                    <select class="form-select" id="branch">
+                        <option value="all" selected>All Branches</option>
+                        <option value="CSE">Computer Science (CSE)</option>
+                        <option value="ECE">Electronics & Communication (ECE)</option>
+                        <option value="IT">Information Technology (IT)</option>
+                        <option value="ME">Mechanical Engineering (ME)</option>
+                        <option value="CE">Civil Engineering (CE)</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button class="btn btn-primary w-100">
+                        <i class="fas fa-filter me-1"></i> Apply Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fee Structures Cards -->
+    <div class="row mb-4">
+        <!-- CSE Fee Structure Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Computer Science Engineering (CSE)</h5>
+                    <span class="badge bg-primary">2025-2026</span>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Fee Component</th>
+                                    <th>Amount (₹)</th>
+                                    <th>Frequency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tuition Fee</td>
+                                    <td>85,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Laboratory Fee</td>
+                                    <td>15,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Development Fee</td>
+                                    <td>10,000</td>
+                                    <td>Per Year</td>
+                                </tr>
+                                <tr>
+                                    <td>Examination Fee</td>
+                                    <td>5,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Library Fee</td>
+                                    <td>3,000</td>
+                                    <td>Per Year</td>
+                                </tr>
+                                <tr class="table-primary">
+                                    <td><strong>Total (Per Year)</strong></td>
+                                    <td><strong>2,18,000</strong></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Payment Schedule:</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                First Installment (At Admission)
+                                <span>₹1,10,000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Second Installment (Before December 15)
+                                <span>₹1,08,000</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-primary" title="Edit"><i class="fas fa-edit me-1"></i> Edit</button>
+                        <button class="btn btn-outline-info" title="Download"><i class="fas fa-download me-1"></i> Download</button>
+                        <button class="btn btn-outline-secondary" title="Print"><i class="fas fa-print me-1"></i> Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ECE Fee Structure Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Electronics & Communication (ECE)</h5>
+                    <span class="badge bg-primary">2025-2026</span>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Fee Component</th>
+                                    <th>Amount (₹)</th>
+                                    <th>Frequency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tuition Fee</td>
+                                    <td>80,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Laboratory Fee</td>
+                                    <td>20,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Development Fee</td>
+                                    <td>10,000</td>
+                                    <td>Per Year</td>
+                                </tr>
+                                <tr>
+                                    <td>Examination Fee</td>
+                                    <td>5,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Library Fee</td>
+                                    <td>3,000</td>
+                                    <td>Per Year</td>
+                                </tr>
+                                <tr class="table-primary">
+                                    <td><strong>Total (Per Year)</strong></td>
+                                    <td><strong>2,18,000</strong></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Payment Schedule:</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                First Installment (At Admission)
+                                <span>₹1,10,000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Second Installment (Before December 15)
+                                <span>₹1,08,000</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-primary" title="Edit"><i class="fas fa-edit me-1"></i> Edit</button>
+                        <button class="btn btn-outline-info" title="Download"><i class="fas fa-download me-1"></i> Download</button>
+                        <button class="btn btn-outline-secondary" title="Print"><i class="fas fa-print me-1"></i> Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IT Fee Structure Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Information Technology (IT)</h5>
+                    <span class="badge bg-primary">2025-2026</span>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Fee Component</th>
+                                    <th>Amount (₹)</th>
+                                    <th>Frequency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tuition Fee</td>
+                                    <td>82,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Laboratory Fee</td>
+                                    <td>15,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Development Fee</td>
+                                    <td>10,000</td>
+                                    <td>Per Year</td>
+                                </tr>
+                                <tr>
+                                    <td>Examination Fee</td>
+                                    <td>5,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Library Fee</td>
+                                    <td>3,000</td>
+                                    <td>Per Year</td>
+                                </tr>
+                                <tr class="table-primary">
+                                    <td><strong>Total (Per Year)</strong></td>
+                                    <td><strong>2,12,000</strong></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Payment Schedule:</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                First Installment (At Admission)
+                                <span>₹1,07,000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Second Installment (Before December 15)
+                                <span>₹1,05,000</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-primary" title="Edit"><i class="fas fa-edit me-1"></i> Edit</button>
+                        <button class="btn btn-outline-info" title="Download"><i class="fas fa-download me-1"></i> Download</button>
+                        <button class="btn btn-outline-secondary" title="Print"><i class="fas fa-print me-1"></i> Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ME Fee Structure Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Mechanical Engineering (ME)</h5>
+                    <span class="badge bg-primary">2025-2026</span>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Fee Component</th>
+                                    <th>Amount (₹)</th>
+                                    <th>Frequency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tuition Fee</td>
+                                    <td>75,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Laboratory Fee</td>
+                                    <td>18,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Development Fee</td>
+                                    <td>10,000</td>
+                                    <td>Per Year</td>
+                                </tr>
+                                <tr>
+                                    <td>Examination Fee</td>
+                                    <td>5,000</td>
+                                    <td>Per Semester</td>
+                                </tr>
+                                <tr>
+                                    <td>Library Fee</td>
+                                    <td>3,000</td>
+                                    <td>Per Year</td>
+                                </tr>
+                                <tr class="table-primary">
+                                    <td><strong>Total (Per Year)</strong></td>
+                                    <td><strong>2,04,000</strong></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Payment Schedule:</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                First Installment (At Admission)
+                                <span>₹1,03,000</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Second Installment (Before December 15)
+                                <span>₹1,01,000</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-primary" title="Edit"><i class="fas fa-edit me-1"></i> Edit</button>
+                        <button class="btn btn-outline-info" title="Download"><i class="fas fa-download me-1"></i> Download</button>
+                        <button class="btn btn-outline-secondary" title="Print"><i class="fas fa-print me-1"></i> Print</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pay Fee Modal -->
+<div class="modal fade" id="payFeeModal" tabindex="-1" aria-labelledby="payFeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalTitle">Pay Fee</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="mb-1"><strong>Fee Type:</strong> <span id="paymentModalBranch">Computer Science Engineering (CSE)</span></p>
+                            <p class="mb-0"><strong>Amount:</strong> <span id="paymentModalAmount">₹85,000</span></p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <p class="mb-1"><strong>Academic Year:</strong> 2025-2026</p>
+                            <p class="mb-0"><strong>Due Date:</strong> December 15, 2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="paymentForm">
+                    <input type="hidden" id="paymentFeeType" value="">
+                    <input type="hidden" id="paymentAmount" value="">
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="studentId" class="form-label">Student</label>
+                            <select class="form-select" id="studentId" required>
+                                <option value="" selected disabled>Select Student</option>
+                                <option value="1">Sahana Patel (CSE2023001)</option>
+                                <option value="2">Rahul Kumar (ECE2022042)</option>
+                                <option value="3">Priya Singh (IT2023015)</option>
+                                <option value="4">Arjun Reddy (ME2021007)</option>
+                            </select>
+                            <div class="invalid-feedback" id="studentIdFeedback">Please select a student.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="paymentMethod" class="form-label">Payment Method</label>
+                            <select class="form-select" id="paymentMethod" required>
+                                <option value="" selected disabled>Select Payment Method</option>
+                                <option value="cash">Cash</option>
+                                <option value="cheque">Cheque</option>
+                                <option value="bank_transfer">Bank Transfer</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="debit_card">Debit Card</option>
+                                <option value="upi">UPI</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="invalid-feedback" id="paymentMethodFeedback">Please select a payment method.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Details (initially hidden) -->
+                    <div id="cardDetailsContainer" style="display: none;">
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">Card Details</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="cardNumber" class="form-label">Card Number</label>
+                                        <input type="text" class="form-control" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="cardName" class="form-label">Name on Card</label>
+                                        <input type="text" class="form-control" id="cardName" placeholder="Enter name as on card">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="expiryMonth" class="form-label">Expiry Month</label>
+                                        <select class="form-select" id="expiryMonth">
+                                            <option value="" selected disabled>Month</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="expiryYear" class="form-label">Expiry Year</label>
+                                        <select class="form-select" id="expiryYear">
+                                            <option value="" selected disabled>Year</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="cvv" class="form-label">CVV</label>
+                                        <input type="password" class="form-control" id="cvv" placeholder="XXX">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UPI Details (initially hidden) -->
+                    <div id="upiDetailsContainer" style="display: none;">
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">UPI Details</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="upiId" class="form-label">UPI ID</label>
+                                        <input type="text" class="form-control" id="upiId" placeholder="username@upi">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="upiApp" class="form-label">UPI App</label>
+                                        <select class="form-select" id="upiApp">
+                                            <option value="" selected disabled>Select UPI App</option>
+                                            <option value="gpay">Google Pay</option>
+                                            <option value="phonepe">PhonePe</option>
+                                            <option value="paytm">Paytm</option>
+                                            <option value="bhim">BHIM</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bank Transfer Details (initially hidden) -->
+                    <div id="bankDetailsContainer" style="display: none;">
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">Bank Transfer Details</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="bankName" class="form-label">Bank Name</label>
+                                        <input type="text" class="form-control" id="bankName" placeholder="Enter bank name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="accountNumber" class="form-label">Account Number</label>
+                                        <input type="text" class="form-control" id="accountNumber" placeholder="Enter account number">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="ifscCode" class="form-label">IFSC Code</label>
+                                        <input type="text" class="form-control" id="ifscCode" placeholder="Enter IFSC code">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="transactionId" class="form-label">Transaction ID</label>
+                                        <input type="text" class="form-control" id="transactionId" placeholder="Enter transaction ID">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="remarks" class="form-label">Remarks</label>
+                        <textarea class="form-control" id="remarks" rows="2" placeholder="Enter any additional information"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="payButton">Pay Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Fee Information -->
+    <div class="card mb-4">
+        <div class="card-header bg-white">
+            <h5 class="mb-0">Additional Fee Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Hostel Fees (Optional)</h6>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Room Type</th>
+                                <th>Amount (₹)</th>
+                                <th>Frequency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Shared Room (3 Students)</td>
+                                <td>60,000</td>
+                                <td>Per Year</td>
+                            </tr>
+                            <tr>
+                                <td>Shared Room (2 Students)</td>
+                                <td>75,000</td>
+                                <td>Per Year</td>
+                            </tr>
+                            <tr>
+                                <td>Single Room</td>
+                                <td>1,00,000</td>
+                                <td>Per Year</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h6>Transportation Fees (Optional)</h6>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Distance Range</th>
+                                <th>Amount (₹)</th>
+                                <th>Frequency</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Up to 5 km</td>
+                                <td>15,000</td>
+                                <td>Per Year</td>
+                            </tr>
+                            <tr>
+                                <td>5 km to 10 km</td>
+                                <td>20,000</td>
+                                <td>Per Year</td>
+                            </tr>
+                            <tr>
+                                <td>Above 10 km</td>
+                                <td>25,000</td>
+                                <td>Per Year</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fee Structure Notes -->
+    <div class="card">
+        <div class="card-header bg-white">
+            <h5 class="mb-0">Notes & Policies</h5>
+        </div>
+        <div class="card-body">
+            <ol>
+                <li>All fees are subject to revision as per the institute's policy.</li>
+                <li>Late payment of fees will attract a penalty of ₹100 per day.</li>
+                <li>Students with outstanding dues will not be allowed to appear for examinations.</li>
+                <li>Fees once paid are non-refundable except in cases where the student withdraws admission before the commencement of classes.</li>
+                <li>Scholarship students should submit relevant documents to avail fee concessions.</li>
+                <li>Payment can be made through online transfer, demand draft, or at the college fee counter.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<!-- No Results Message (initially hidden) -->
+<div id="noResultsMessage" class="alert alert-info text-center my-4" style="display: none;">
+    <i class="fas fa-info-circle me-2"></i> No fee structures found matching your filters.
+</div>
+
+<!-- Add Fee Structure Modal -->
+<div class="modal fade" id="addFeeStructureModal" tabindex="-1" aria-labelledby="addFeeStructureModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addFeeStructureModalLabel">Create New Fee Structure</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="feeStructureForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="structureName" class="form-label">Fee Structure Name</label>
+                            <input type="text" class="form-control" id="structureName" placeholder="Enter name" required>
+                            <div class="invalid-feedback" id="structureNameFeedback">Please enter a fee structure name.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="academicYear" class="form-label">Academic Year</label>
+                            <select class="form-select" id="academicYear" required>
+                                <div class="invalid-feedback" id="academicYearFeedback">Please select an academic year.</div>
+                                <option value="" selected disabled>Select Academic Year</option>
+                                <option value="2025-2026">2025-2026</option>
+                                <option value="2024-2025">2024-2025</option>
+                                <option value="2023-2024">2023-2024</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="branch" class="form-label">Branch</label>
+                            <select class="form-select" id="branch" required>
+                                <div class="invalid-feedback" id="branchFeedback">Please select a branch.</div>
+                                <option value="" selected disabled>Select Branch</option>
+                                <option value="CSE">Computer Science (CSE)</option>
+                                <option value="ECE">Electronics & Communication (ECE)</option>
+                                <option value="IT">Information Technology (IT)</option>
+                                <option value="ME">Mechanical Engineering (ME)</option>
+                                <option value="CE">Civil Engineering (CE)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="effectiveDate" class="form-label">Effective Date</label>
+                            <input type="date" class="form-control" id="effectiveDate" required>
+                        </div>
+                    </div>
+                    
+                    <h6 class="mt-4 mb-3">Fee Components</h6>
+                    <div id="feeComponentsFeedback" class="invalid-feedback" style="display: none;">Please add at least one fee component.</div>
+                    <div id="feeComponents">
+                        <div class="row mb-3 fee-component">
+                            <div class="col-md-4">
+                                <label for="componentName1" class="form-label">Component Name</label>
+                                <input type="text" class="form-control" id="componentName1" placeholder="e.g., Tuition Fee" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="componentAmount1" class="form-label">Amount (₹)</label>
+                                <input type="number" class="form-control" id="componentAmount1" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="componentFrequency1" class="form-label">Frequency</label>
+                                <select class="form-select" id="componentFrequency1" required>
+                                    <option value="per_semester">Per Semester</option>
+                                    <option value="per_year">Per Year</option>
+                                    <option value="one_time">One Time</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button type="button" class="btn btn-outline-danger w-100">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-outline-primary" id="addComponentBtn">
+                            <i class="fas fa-plus me-1"></i> Add Fee Component
+                        </button>
+                    </div>
+                    
+                    <h6 class="mt-4 mb-3">Payment Schedule</h6>
+                    <div id="paymentSchedule">
+                        <div class="row mb-3 payment-schedule-item">
+                            <div class="col-md-5">
+                                <label for="installmentName1" class="form-label">Installment Name</label>
+                                <input type="text" class="form-control" id="installmentName1" placeholder="e.g., First Installment" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="installmentAmount1" class="form-label">Amount (₹)</label>
+                                <input type="number" class="form-control" id="installmentAmount1" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="installmentDueDate1" class="form-label">Due Date</label>
+                                <input type="date" class="form-control" id="installmentDueDate1" required>
+                            </div>
+                            <div class="col-md-1 d-flex align-items-end">
+                                <button type="button" class="btn btn-outline-danger w-100">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-outline-primary" id="addInstallmentBtn">
+                            <i class="fas fa-plus me-1"></i> Add Installment
+                        </button>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Notes</label>
+                        <textarea class="form-control" id="notes" rows="3" placeholder="Enter any additional notes or policies"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" type="submit">Create Fee Structure</button>
+                <div class="mt-3 text-center" id="totalAmountContainer">
+                    <p class="mb-0">Total Annual Amount: <span id="totalAmount">₹0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', path='/js/fee_structures.js') }}"></script>
+<script src="{{ url_for('static', path='/js/fee_structure_buttons.js') }}"></script>
+{% endblock %}

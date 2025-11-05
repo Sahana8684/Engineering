@@ -1,0 +1,373 @@
+{% extends "base.html" %}
+
+{% block title %}Semester Exam Timetable - Engineering College Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Semester Exam Timetable</h1>
+            <p class="lead">CSE Second Year - Third Semester (2023-2024)</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a href="/dashboard" class="btn btn-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i> Back to Dashboard
+            </a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" onclick="window.print()">
+                    <i class="fas fa-print me-1"></i> Print
+                </button>
+                <button type="button" class="btn btn-success">
+                    <i class="fas fa-download me-1"></i> Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-info">
+        <div class="d-flex">
+            <div class="me-3">
+                <i class="fas fa-info-circle fa-2x"></i>
+            </div>
+            <div>
+                <h5 class="alert-heading">Important Announcement</h5>
+                <p class="mb-0">All students are required to be present at the examination hall 30 minutes before the scheduled time. Carry your college ID card and admit card for verification. Mobile phones and electronic devices are strictly prohibited in the examination hall.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">End Semester Examination Schedule</h5>
+                <span class="badge bg-light text-dark">November 2023</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered exam-table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th width="15%">Date</th>
+                            <th width="15%">Day</th>
+                            <th width="15%">Time</th>
+                            <th width="25%">Subject</th>
+                            <th width="15%">Code</th>
+                            <th width="15%">Venue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data Structures and Algorithms -->
+                        <tr>
+                            <td class="align-middle">November 15, 2023</td>
+                            <td class="align-middle">Wednesday</td>
+                            <td class="align-middle">9:30 AM - 12:30 PM</td>
+                            <td class="align-middle fw-bold">Data Structures and Algorithms</td>
+                            <td class="align-middle">CS201</td>
+                            <td class="align-middle">Main Hall</td>
+                        </tr>
+                        
+                        <!-- Database Management Systems -->
+                        <tr>
+                            <td class="align-middle">November 18, 2023</td>
+                            <td class="align-middle">Saturday</td>
+                            <td class="align-middle">9:30 AM - 12:30 PM</td>
+                            <td class="align-middle fw-bold">Database Management Systems</td>
+                            <td class="align-middle">CS202</td>
+                            <td class="align-middle">Main Hall</td>
+                        </tr>
+                        
+                        <!-- Object-Oriented Programming -->
+                        <tr>
+                            <td class="align-middle">November 21, 2023</td>
+                            <td class="align-middle">Tuesday</td>
+                            <td class="align-middle">9:30 AM - 12:30 PM</td>
+                            <td class="align-middle fw-bold">Object-Oriented Programming</td>
+                            <td class="align-middle">CS203</td>
+                            <td class="align-middle">Main Hall</td>
+                        </tr>
+                        
+                        <!-- Computer Networks -->
+                        <tr>
+                            <td class="align-middle">November 24, 2023</td>
+                            <td class="align-middle">Friday</td>
+                            <td class="align-middle">9:30 AM - 12:30 PM</td>
+                            <td class="align-middle fw-bold">Computer Networks</td>
+                            <td class="align-middle">CS204</td>
+                            <td class="align-middle">Main Hall</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Practical Examination Schedule</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Subject</th>
+                                    <th>Time</th>
+                                    <th>Lab</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nov 27, 2023</td>
+                                    <td>DS Lab</td>
+                                    <td>9:00 AM - 12:00 PM</td>
+                                    <td>Computer Lab 1</td>
+                                </tr>
+                                <tr>
+                                    <td>Nov 28, 2023</td>
+                                    <td>DBMS Lab</td>
+                                    <td>9:00 AM - 12:00 PM</td>
+                                    <td>Database Lab</td>
+                                </tr>
+                                <tr>
+                                    <td>Nov 29, 2023</td>
+                                    <td>OOP Lab</td>
+                                    <td>9:00 AM - 12:00 PM</td>
+                                    <td>Programming Lab</td>
+                                </tr>
+                                <tr>
+                                    <td>Nov 30, 2023</td>
+                                    <td>Networks Lab</td>
+                                    <td>9:00 AM - 12:00 PM</td>
+                                    <td>Networking Lab</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Exam Information</h5>
+                </div>
+                <div class="card-body">
+                    <h6 class="fw-bold">Exam Pattern</h6>
+                    <ul class="mb-3">
+                        <li>Total Marks: 100 (Theory: 70, Internal Assessment: 30)</li>
+                        <li>Duration: 3 hours</li>
+                        <li>Question Paper Pattern: 5 questions with internal choice</li>
+                        <li>Passing Marks: 40%</li>
+                    </ul>
+                    
+                    <h6 class="fw-bold">Important Instructions</h6>
+                    <ul class="mb-3">
+                        <li>Use blue/black pen only</li>
+                        <li>Non-programmable calculators are allowed for specific subjects</li>
+                        <li>No electronic devices permitted</li>
+                        <li>Bring your college ID and hall ticket</li>
+                    </ul>
+                    
+                    <h6 class="fw-bold">Exam Coordinators</h6>
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="me-3">
+                            <img src="https://via.placeholder.com/50" class="rounded-circle" alt="Coordinator">
+                        </div>
+                        <div>
+                            <strong>Dr. Rajesh Kumar</strong>
+                            <div class="text-muted">Chief Examination Controller</div>
+                            <small>Contact: exam.controller@example.edu</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <img src="https://via.placeholder.com/50" class="rounded-circle" alt="Coordinator">
+                        </div>
+                        <div>
+                            <strong>Prof. Meena Singh</strong>
+                            <div class="text-muted">CSE Department Exam Coordinator</div>
+                            <small>Contact: cse.exams@example.edu</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Syllabus Coverage</h5>
+        </div>
+        <div class="card-body">
+            <div class="accordion" id="syllabusAccordion">
+                <!-- Data Structures and Algorithms -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Data Structures and Algorithms (CS201)
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#syllabusAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Introduction to Data Structures and Algorithm Analysis</li>
+                                <li>Arrays and Linked Lists</li>
+                                <li>Stacks and Queues</li>
+                                <li>Trees (Binary Trees, Binary Search Trees, AVL Trees)</li>
+                                <li>Graphs and Graph Algorithms</li>
+                                <li>Sorting Algorithms (Bubble, Selection, Insertion, Merge, Quick, Heap)</li>
+                                <li>Searching Algorithms (Linear, Binary, Hashing)</li>
+                                <li>Algorithm Design Techniques (Divide and Conquer, Greedy, Dynamic Programming)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Database Management Systems -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Database Management Systems (CS202)
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#syllabusAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Introduction to Database Systems</li>
+                                <li>Entity-Relationship Model</li>
+                                <li>Relational Model and Relational Algebra</li>
+                                <li>SQL (DDL, DML, DCL, TCL)</li>
+                                <li>Database Design and Normalization (1NF, 2NF, 3NF, BCNF)</li>
+                                <li>Transaction Management and Concurrency Control</li>
+                                <li>Database Recovery</li>
+                                <li>Indexing and Hashing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Object-Oriented Programming -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Object-Oriented Programming (CS203)
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#syllabusAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Introduction to Object-Oriented Programming</li>
+                                <li>Classes, Objects, and Methods</li>
+                                <li>Inheritance and Polymorphism</li>
+                                <li>Abstraction and Encapsulation</li>
+                                <li>Interfaces and Abstract Classes</li>
+                                <li>Exception Handling</li>
+                                <li>Multithreading</li>
+                                <li>GUI Programming</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Computer Networks -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Computer Networks (CS204)
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#syllabusAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Introduction to Computer Networks</li>
+                                <li>Network Models (OSI and TCP/IP)</li>
+                                <li>Physical Layer and Data Link Layer</li>
+                                <li>Network Layer and Routing Algorithms</li>
+                                <li>Transport Layer (TCP and UDP)</li>
+                                <li>Application Layer Protocols</li>
+                                <li>Network Security</li>
+                                <li>Socket Programming</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Seating Arrangement</h5>
+        </div>
+        <div class="card-body">
+            <p>Seating arrangements will be displayed on the notice board one day before each examination. Students are advised to check their seating arrangement and report any discrepancies to the examination office immediately.</p>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary">
+                    <i class="fas fa-search me-1"></i> Check Seating Arrangement
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .exam-table th, .exam-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    @media print {
+        .btn, .no-print {
+            display: none !important;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .card {
+            border: none;
+        }
+        
+        .card-header {
+            background-color: #f8f9fa !important;
+            color: #000 !important;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .table-dark {
+            background-color: #f8f9fa !important;
+            color: #000 !important;
+        }
+        
+        .accordion-button::after {
+            display: none;
+        }
+        
+        .accordion-collapse {
+            display: block !important;
+        }
+        
+        .accordion-button {
+            background-color: #f8f9fa !important;
+            color: #000 !important;
+            font-weight: bold;
+        }
+    }
+</style>
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize any JavaScript functionality here
+    });
+</script>
+{% endblock %}
+{% endblock %}
